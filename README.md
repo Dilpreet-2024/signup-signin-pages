@@ -1,0 +1,1 @@
+This is a simple full stack project in which i have used express, mongodb for database and nodejs .Three pages,i.e simple signup, sigin & forget password pages are just simply built using html,css, and javascript.
