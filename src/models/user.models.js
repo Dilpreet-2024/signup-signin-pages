@@ -12,6 +12,10 @@ const userSchema=new mongoose.Schema({
     password:{
         type:String,
         required:true
+    },
+    photo:{
+        type:String,
+        required:true
     }
 },{timestamps:true})
 userSchema.pre('save',async function(next)

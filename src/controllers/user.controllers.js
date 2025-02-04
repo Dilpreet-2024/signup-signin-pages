@@ -1,5 +1,5 @@
-import { trusted } from "mongoose";
 import { User } from "../models/user.models.js";
+import {uploadOnCloudinary} from '../utils/cloudinary.js'
 export const registerUser = async (req,res) => {
     try
     {
@@ -13,8 +13,16 @@ if(existingUser)
 {
     return res.status(400).json({message:"Username or email already exists"});
 }
-const user=await User.create({name,email,password});
-res.status(200).json({message:"User registered successfully"});
+console.log(req.files);
+const imgLocalPath=req.files?.photo[0]?.path;
+const photo=await uploadOnCloudinary(imgLocalPath);
+if(!photo)
+{
+    return res.status(400).json({message:"Photo is a required field"})
+}
+const user=await User.create({name,email,password,photo});
+const updated=await User.findById(user._id).select("-password");
+res.status(200).json({message:"User registered successfully",updated});
     }
     catch(err)
     {
