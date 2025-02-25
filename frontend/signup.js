@@ -1,4 +1,4 @@
-const signup=document.getElementById('signup').addEventListener('submit',async(e)=>{
+const signup=document.getElementById('click').addEventListener('submit',async(e)=>{
     e.preventDefault();
     const name=document.getElementById('username').value;
     const email=document.getElementById('email').value;
